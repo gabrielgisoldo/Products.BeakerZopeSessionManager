@@ -19,7 +19,7 @@ reasons:
    directly. This product is meant for use with existing add-ons that already
    use Zope sessions (i.e. request.SESSION).
 
-.. _`Beaker`: http://beaker.groovie.org/
+.. _`Beaker`: https://beaker.readthedocs.io/en/latest/index.html
 .. _`collective.beaker`: http://pypi.python.org/pypi/collective.beaker
 
 Installation
@@ -27,8 +27,30 @@ Installation
 
 Include the line ``<include package="collective.beaker" />`` in yout site.zcml
 
-Edit the file `lib/python3.7/site-packages/Zope2/Startup/serve.py` inside your virtual env.
+Edit the file ``lib/python3.7/site-packages/Zope2/Startup/serve.py`` inside your virtual env.
 
+Replace (line 200):
+```python
+try:
+    serve(app)`
+except (SystemExit, KeyboardInterrupt) as e:
+```
+with:
+```python
+try:
+    from beaker.middleware import SessionMiddleware
+    config = {
+        'session.type': 'file',
+        'session.auto': True,
+        'session.save_accessed_time': True,
+        'session.data_dir': '/tmp/sessions/data',
+        'session.lock_dir': '/tmp/sessions/lock',
+        'session.timeout': 28800
+    }
+    server(SessionMiddleware(app, config))
+except (SystemExit, KeyboardInterrupt) as e:
+```
+For more info on how to configure your Beaker, please refer to the documentation 
 Notes
 -----
 
