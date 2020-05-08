@@ -25,32 +25,9 @@ reasons:
 Installation
 ------------
 
-
-Include the line <include package="collective.beaker" /> in yout site.zcml
+Include the line ``<include package="collective.beaker" />`` in yout site.zcml
 
 Edit the file `lib/python3.7/site-packages/Zope2/Startup/serve.py` inside your virtual env.
-It should look like this::
-``
---- lib/python3.7/site-packages/Zope2/Startup/serve.py
-+++ untitled 1
-@@ -200,7 +200,15 @@
-             self.makePidFile()
- 
-             try:
--                server(app)
-+                # server(app)
-+                from beaker.middleware import SessionMiddleware
-+                server(SessionMiddleware(
-+                    app, {'session.type': 'file',
-+                          'session.auto': True,
-+                          'session.save_accessed_time': True,
-+                          'session.data_dir': '/tmp/sessions/data',
-+                          'session.lock_dir': '/tmp/sessions/lock',
-+                          'session.timeout': 28800}))
-             except (SystemExit, KeyboardInterrupt) as e:
-                 if self.options.verbose > 1:
-                     raise
-``
 
 Notes
 -----
