@@ -27,7 +27,7 @@ Edit the file ``lib/python3.7/site-packages/Zope2/Startup/serve.py`` inside your
 Replace (line 200):
 ```python
 try:
-    serve(app)`
+    serve(app)
 except (SystemExit, KeyboardInterrupt) as e:
 ```
 with:
