@@ -54,7 +54,7 @@ For more info on how to configure your Beaker, please refer to [Beaker][1] docum
 
 # Contributors
 
-* Gabriel Gisoldo [gabrielgisoldo][3]
+* Gabriel Gisoldo [[gabrielgisoldo][3]]
 
 [1]: http://https://beaker.readthedocs.io/en/latest/index.html "Beaker"
 [2]: http://pypi.python.org/pypi/collective.beaker "collective.beaker"
