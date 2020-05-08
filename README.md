@@ -1,8 +1,7 @@
-Introduction
-============
+#Introduction
 
 ``Products.BeakerZopeSessionManager`` is a replacement for the default Zope 4
-session implementation.  It uses `Beaker`_ as a backend (via `collective.beaker`_)
+session implementation.  It uses [Beaker][1] as a backend (via [collective.beaker][2])
 and adapts the Beaker session to provide the same interface as a normal Zope
 session.
 
@@ -19,11 +18,7 @@ reasons:
    directly. This product is meant for use with existing add-ons that already
    use Zope sessions (i.e. request.SESSION).
 
-.. _`Beaker`: https://beaker.readthedocs.io/en/latest/index.html
-.. _`collective.beaker`: http://pypi.python.org/pypi/collective.beaker
-
-Installation
-------------
+#Installation
 
 Include the line ``<include package="collective.beaker" />`` in yout site.zcml
 
@@ -50,16 +45,18 @@ try:
     server(SessionMiddleware(app, config))
 except (SystemExit, KeyboardInterrupt) as e:
 ```
-For more info on how to configure your Beaker, please refer to the documentation 
-Notes
------
+For more info on how to configure your Beaker, please refer to [Beaker][1] documentation.
+
+#Notes
 
 * Beaker does not automatically clean up old sessions, so you may want to set
   up a cron job to take care of this.
 
-Contributors
-============
+#Contributors
 
 * Gabriel Gisoldo [gabrielgisoldo]
 
 .. include:: CHANGES.rst
+
+[1]: http://https://beaker.readthedocs.io/en/latest/index.html "Beaker"
+[2]: http://pypi.python.org/pypi/collective.beaker "collective.beaker"
