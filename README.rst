@@ -1,16 +1,7 @@
 Introduction
 ============
 
-.. image:: http://img.shields.io/pypi/v/Products.BeakerSessionDataManager.svg
-    :target: https://pypi.python.org/pypi/Products.BeakerSessionDataManager
-
-.. image:: https://img.shields.io/travis/davisagli/Products.BeakerSessionDataManager/master.svg
-    :target: http://travis-ci.org/davisagli/Products.BeakerSessionDataManager
-
-.. image:: https://img.shields.io/coveralls/davisagli/Products.BeakerSessionDataManager/master.svg
-    :target: https://coveralls.io/r/davisagli/Products.BeakerSessionDataManager
-
-``Products.BeakerSessionDataManager`` is a replacement for the default Zope 2
+``Products.BeakerZopeSessionManager`` is a replacement for the default Zope 4
 session implementation.  It uses `Beaker`_ as a backend (via `collective.beaker`_)
 and adapts the Beaker session to provide the same interface as a normal Zope
 session.
@@ -34,30 +25,32 @@ reasons:
 Installation
 ------------
 
-1. Add the Products.BeakerSessionDataManager egg to your buildout::
 
-    [instance]
-    eggs =
-        Products.BeakerSessionDataManager
+Include the line <include package="collective.beaker" /> in yout site.zcml
 
-2. Make sure that buildout adds Beaker configuration to zope.conf. For example::
-
-    zope-conf-additional =
-        <product-config beaker>
-            session.type            file
-            session.data_dir        ${buildout:directory}/var/sessions/data
-            session.lock_dir        ${buildout:directory}/var/sessions/lock
-            session.key             beaker.session
-            session.secret          secret
-        </product-config>
-
-   The "secret" should be replaced with a unique string for your system. It
-   must be the same for all Zope instances using the same session store.
-
-   See the `collective.beaker`_ docs for more details on configuration.
-
-3. In the ZMI, delete the ``session_data_manager`` object and add a
-   ``Beaker Session Data Manager``.
+Edit the file `lib/python3.7/site-packages/Zope2/Startup/serve.py` inside your virtual env.
+It should look like this::
+``
+--- lib/python3.7/site-packages/Zope2/Startup/serve.py
++++ untitled 1
+@@ -200,7 +200,15 @@
+             self.makePidFile()
+ 
+             try:
+-                server(app)
++                # server(app)
++                from beaker.middleware import SessionMiddleware
++                server(SessionMiddleware(
++                    app, {'session.type': 'file',
++                          'session.auto': True,
++                          'session.save_accessed_time': True,
++                          'session.data_dir': '/tmp/sessions/data',
++                          'session.lock_dir': '/tmp/sessions/lock',
++                          'session.timeout': 28800}))
+             except (SystemExit, KeyboardInterrupt) as e:
+                 if self.options.verbose > 1:
+                     raise
+``
 
 Notes
 -----
@@ -68,7 +61,6 @@ Notes
 Contributors
 ============
 
-* David Glick [davisagli]
-* Paul Roe [kuetrzi]
+* Gabriel Gisoldo [gabrielgisoldo]
 
 .. include:: CHANGES.rst
