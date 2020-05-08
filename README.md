@@ -1,4 +1,4 @@
-#Introduction
+# Introduction
 
 ``Products.BeakerZopeSessionManager`` is a replacement for the default Zope 4
 session implementation.  It uses [Beaker][1] as a backend (via [collective.beaker][2])
@@ -18,7 +18,7 @@ reasons:
    directly. This product is meant for use with existing add-ons that already
    use Zope sessions (i.e. request.SESSION).
 
-#Installation
+# Installation
 
 Include the line ``<include package="collective.beaker" />`` in yout site.zcml
 
@@ -47,12 +47,12 @@ except (SystemExit, KeyboardInterrupt) as e:
 ```
 For more info on how to configure your Beaker, please refer to [Beaker][1] documentation.
 
-#Notes
+# Notes
 
 * Beaker does not automatically clean up old sessions, so you may want to set
   up a cron job to take care of this.
 
-#Contributors
+# Contributors
 
 * Gabriel Gisoldo [gabrielgisoldo]
 
