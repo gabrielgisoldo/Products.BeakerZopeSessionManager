@@ -19,6 +19,9 @@ reasons:
    use Zope sessions (i.e. request.SESSION).
 
 # Installation
+Using [PIP][4]:
+
+``pip install Products.BeakerZopeSessionManager``
 
 Include the line ``<include package="collective.beaker" />`` in yout site.zcml
 
@@ -59,3 +62,4 @@ For more info on how to configure your Beaker, please refer to [Beaker][1] docum
 [1]: http://https://beaker.readthedocs.io/en/latest/index.html "Beaker"
 [2]: http://pypi.python.org/pypi/collective.beaker "collective.beaker"
 [3]: https://github.com/gabrielgisoldo "gabrielgisoldo"
+[4]: https://pypi.org/project/Products.BeakerZopeSessionManager/ "PIP"
