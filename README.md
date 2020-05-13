@@ -12,7 +12,7 @@ reasons:
  * Beaker provides better flexibility in where session data is actually stored.
  * Beaker is used and maintained outside of the Zope ecosystem.
 
-.. Note::
+### Note:
    If you are developing a product that needs sessions but are not already
    using Zope sessions, you should probably just use collective.beaker
    directly. This product is meant for use with existing add-ons that already
