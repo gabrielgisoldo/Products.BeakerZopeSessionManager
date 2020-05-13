@@ -1,6 +1,6 @@
 # Introduction
 
-``Products.BeakerZopeSessionManager`` is a replacement for the default Zope 4
+[Products.BeakerZopeSessionManager][4] is a replacement for the default Zope 4
 session implementation.  It uses [Beaker][1] as a backend (via [collective.beaker][2])
 and adapts the Beaker session to provide the same interface as a normal Zope
 session.
