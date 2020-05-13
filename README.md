@@ -27,10 +27,10 @@ Include the line ``<include package="collective.beaker" />`` in yout site.zcml
 
 Edit the file ``lib/python3.7/site-packages/Zope2/Startup/serve.py`` inside your virtual env.
 
-Replace (line 200):
+Replace (line 203):
 ```python
 try:
-    serve(app)
+    server(app)
 except (SystemExit, KeyboardInterrupt) as e:
 ```
 with:
